@@ -4,6 +4,9 @@
   <h2></h2>
   <%= link_to image_tag("competition.jpg") %>  <br> <br>
 
-  <%= link_to "Prihlas sa", '#', class: "btn btn-large btn-primary" %>
-
+  <% if current_user %>
+    Uspesne prihlasenie
+  <% else %>
+    <%= link_to "Prihlasenie", new_session_path, class: "btn btn-large btn-primary" %>
+  <% end %>
 </div>

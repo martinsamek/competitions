@@ -2,10 +2,17 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "Competitions", '#', id: "logo" %>
+
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Pomoc",    '#' %></li>
-          <li><%= link_to "Prihlasenie", '#' %></li>
+          <% if current_user %>
+              <li><p class="navbar-text navbar-right">Prihlaseny : <%= current_user.email %></p></li>
+              <li><%= link_to "Odhlasit", logout_path %></li>
+          <% else %>
+              <li><%= link_to "Zaregistruj sa", new_user_path %></li>
+              <li><%= link_to "Prihlas sa", new_session_path %></li>
+          <% end %>
         </ul>
       </nav>
     </div>
