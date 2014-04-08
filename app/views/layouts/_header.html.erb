@@ -1,17 +1,21 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Competitions", '#', id: "logo" %>
+      <%= link_to "Competitions", '#', id: "logo", :title => "Aplikacia na evidenciu stredoskolskych sutazi" %>
 
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Pomoc",    '#' %></li>
+          <li><%= link_to "Pomoc",    '#', :title => "Heeeeeeelp" %></li>
           <% if current_user %>
               <li><p class="navbar-text navbar-right">Prihlaseny : <%= current_user.email %></p></li>
-              <li><%= link_to "Odhlasit", logout_path %></li>
+              <li><%= link_to "Odhlasit", logout_path, :title => "Odhlasenie zo systemu" %></li>
           <% else %>
-              <li><%= link_to "Zaregistruj sa", new_user_path %></li>
-              <li><%= link_to "Prihlas sa", new_session_path %></li>
+              <li>
+                <%= link_to "Zaregistruj sa", new_user_path, :title => "Registracia noveho uzivatela" %>
+              </li>
+              <li>
+                <%= link_to "Prihlas sa",  new_session_path, :title => "Prihlasenie do systemu" %>
+              </li>
           <% end %>
         </ul>
       </nav>

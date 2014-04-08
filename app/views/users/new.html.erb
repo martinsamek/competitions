@@ -1,18 +1,22 @@
 <div class="left hero-unit">
 <h1>Nova registracia</h1>
-
+<hr>
 <%= form_for @user do |f| %>
-    <% if @user.errors.any? %>
-        <div class="error_messages">
-          <h2>Form is invalid</h2>
-          <ul>
-            <% for message in @user.errors.full_messages %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <hr>
+      <% if flash[:alert] %>
+          <div class="alert alert-danger">
+            <h4>
+              <%= flash[:alert] %>
+            </h4>
+          </div>
+      <% end %>
+      <% if flash[:notice] %>
+          <div class="alert alert-danger">
+            <h4>
+              <%= flash[:notice] %>
+            </h4>
+          </div>
+      <% end %>
+
     <p>
       <%= f.label :email %>
       <%= f.text_field :email %>

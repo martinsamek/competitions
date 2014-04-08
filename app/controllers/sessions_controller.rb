@@ -8,13 +8,13 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_url, notice: "Uspesne prihlasenie :-)"
     else
-      flash.now.alert = "Email alebo heslo je nespravene !!!"
+      flash.now.alert = "Email alebo heslo je nespravne !!!"
       render "new"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url, notice: "Neprihlaseny uzivatel !!!"
   end
 end

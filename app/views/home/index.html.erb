@@ -5,8 +5,9 @@
   <%= link_to image_tag("competition.jpg") %>  <br> <br>
 
   <% if current_user %>
-    Uspesne prihlasenie
+      <div class="alert alert-success">Uspesne prihlasenie :-)</div>
   <% else %>
-    <%= link_to "Prihlasenie", new_session_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Prihlasenie", new_session_path, class: "btn btn-large btn-primary", :title => "Prihlasenie do systemu" %>
   <% end %>
 </div>
+
