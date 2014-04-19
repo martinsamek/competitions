@@ -1,10 +1,16 @@
 Competitions::Application.routes.draw do
 
-  get 'signup', to: 'user#new',         as: 'signup'
-  get 'login',  to: 'sessions#new',     as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  resources :competitions
+
+  resources :schools
+
+  get 'signup',  to: 'user#new',         as: 'signup'
+  get 'login',   to: 'sessions#new',     as: 'login'
+  get 'logout',  to: 'sessions#destroy', as: 'logout'
+  get 'article', to: 'articles#index'
 
   resources :users
+
   resources :sessions
 
   get "home/index"

@@ -17,18 +17,47 @@
           </div>
       <% end %>
 
-    <p>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </p>
-    <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </p>
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </p>
+      <p>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+      </p>
+      <p>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </p>
+      <p>
+        <%= f.label :birthday %>
+        <%= f.date_field :birthday %>
+      </p>
+      <p>
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+      </p>
+      <p>
+        <%= f.label :residence %>
+        <%= f.text_field :residence %>
+      </p>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email, :value => 'contact@host.com'%>
+      </p>
+      <p>
+        <%= f.label :admin %>
+        <%= f.select :admin, options_for_select(%w[Admin User]) %>
+
+      </p>
+      <p>
+        <%= f.label :id_card_number %>
+        <%= f.text_field :id_card_number %>
+      </p>
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </p>
     <p class="button"><%= f.submit %></p>
 <% end %>
 </div>

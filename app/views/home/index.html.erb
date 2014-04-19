@@ -6,6 +6,7 @@
 
   <% if current_user %>
       <div class="alert alert-success">Uspesne prihlasenie :-)</div>
+      <button_to
   <% else %>
     <%= link_to "Prihlasenie", new_session_path, class: "btn btn-large btn-primary", :title => "Prihlasenie do systemu" %>
   <% end %>
