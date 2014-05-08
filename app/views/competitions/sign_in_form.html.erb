@@ -1,0 +1,33 @@
+<%= form_for(@competition_assignment, url: sign_in_competition_path) do |f| %>
+  <% if @competition_assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@competition_assignment.errors.count, "error") %> prohibited this competition from being saved:</h2>
+
+      <ul>
+      <% @competition_assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :competition_id %><br>
+    <%= @competition_assignment.competition.name %>
+  </div>
+  <div class="field">
+    <%= f.label :school_id %><br>
+    <%= f.collection_select :school_id, School.order("name ASC"), :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :user_grade %><br>
+    <%= f.select :user_grade, 1..9 %>
+  </div>
+  <div class="field">
+    <%= f.label :teacher_name %><br>
+    <%= f.text_field :teacher_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

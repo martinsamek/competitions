@@ -1,10 +1,37 @@
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
+
+  def sign_in_form
+    competition = Competition.find(params[:id])
+    @competition_assignment = CompetitionAssignment.new user: current_user,
+                                                          competition: competition
+
+  end
+
+  def sign_in
+    @competition_assignment = CompetitionAssignment.new
+    @competition_assignment.user = current_user
+    @competition_assignment.school_id = params[:competition_assignment][:school_id]
+    @competition_assignment.user_grade = params[:competition_assignment][:user_grade]
+    @competition_assignment.teacher_name = params[:competition_assignment][:teacher_name]
+    @competition_assignment.competition_id = params[:id]
+    if @competition_assignment.save
+      redirect_to Competition.find(params[:id]), notice: "Uspesne ste sa prihlasili do sutaze"
+    else
+      render action: :sign_in_form
+    end
+
+  end
   # GET /competitions
   # GET /competitions.json
   def index
     @competitions = Competition.all
+  end
+
+  def maintenance
+    @competitions = current_user.maintaining_competitions
+    render action: :index
   end
 
   # GET /competitions/1
@@ -28,6 +55,7 @@ class CompetitionsController < ApplicationController
 
     respond_to do |format|
       if @competition.save
+        @competition.maintainers << current_user
         format.html { redirect_to @competition, notice: 'Competition was successfully created.' }
         format.json { render action: 'show', status: :created, location: @competition }
       else

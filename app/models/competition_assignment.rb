@@ -1,4 +1,4 @@
-class CompetitionAssigment < ActiveRecord::Base
+class CompetitionAssignment < ActiveRecord::Base
   belongs_to :user
   belongs_to :school
   belongs_to :competition

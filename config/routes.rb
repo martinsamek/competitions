@@ -1,8 +1,20 @@
 Competitions::Application.routes.draw do
 
-  resources :competitions
+  resources :competitions do
+    collection do
+      get :maintenance
+    end
 
-  resources :schools
+    member do
+      get :sign_in_form
+      post :sign_in
+    end
+  end
+  resources :schools do
+    collection do
+      get :maintenance
+    end
+  end
 
   get 'signup',  to: 'user#new',         as: 'signup'
   get 'login',   to: 'sessions#new',     as: 'login'
