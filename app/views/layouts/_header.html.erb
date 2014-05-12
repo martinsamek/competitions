@@ -9,9 +9,9 @@
 
           <% if current_user %>
               <% if current_user.maintaining_schools.any? %>
-                <li><%= link_to "Sprava skol", url_for(controller: "schools", action: "maintenance") %></li>
+                <li><%= link_to "Sprava skol", url_for(controller: "schools", action: "maintenance"), :title => "Sprava skol" %></li>
               <% end %>
-              <li><%= link_to "Sprava Súťaží", url_for(controller: "competitions", action: "maintenance") %></li>
+              <li><%= link_to "Sprava Súťaží", url_for(controller: "competitions", action: "maintenance"), :title => "Sprava sutazi" %></li>
               <li><p class="navbar-text navbar-right">Prihlaseny : <%= current_user.email %></p></li>
               <li><%= link_to "Odhlasit", logout_path, :title => "Odhlasenie zo systemu" %></li>
           <% else %>

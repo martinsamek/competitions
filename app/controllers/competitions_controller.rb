@@ -1,12 +1,25 @@
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
+  before_action :require_current_user, only: [:maintenance, :new, :create, :edit, :udpate, :destroy]
+
+  before_action only: [:new, :create, :edit, :udpate, :destroy] do |controller|
+    competition_id = controller.params[:id]
+    if not current_user.maintaining_competition_ids.include? competition_id and not current_user.admin?
+      redirect_to :back, notice: "Nemate pravo pre editovanie !!!"
+    end
+  end
 
   def sign_in_form
     competition = Competition.find(params[:id])
     @competition_assignment = CompetitionAssignment.new user: current_user,
                                                           competition: competition
 
+  end
+
+  def maintenance
+    @competitions = current_user.maintaining_competitions
+    render action: :index
   end
 
   def sign_in

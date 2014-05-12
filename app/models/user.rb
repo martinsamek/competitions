@@ -9,12 +9,6 @@ class User < ActiveRecord::Base
 
 
 
-  #has_and_belongs_to_many :schools,
-  #                        :join_table => "schools_maintainers",
-  #                        :foreign_key => "maintainer_id",
-  #                        :association_foreign_key => "school_id"
-
-
   has_and_belongs_to_many :maintaining_competitions,
                         :join_table => "competitions_maintainers",
                         :foreign_key => "maintainer_id",
@@ -27,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :schools, through: :competition_assignments
   has_many :competitions, through: :competition_assignments
 
- # has_many :competitions, through: :CompetitionAssigments
+
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create

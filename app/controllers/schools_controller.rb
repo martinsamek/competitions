@@ -2,12 +2,14 @@ class SchoolsController < ApplicationController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
 
   before_action :require_current_user, only: [:maintenance, :new, :create, :edit, :udpate, :destroy]
+
   before_action only: [:new, :create, :edit, :udpate, :destroy] do |controller|
     school_id = controller.params[:id]
     if not current_user.maintaining_school_ids.include? school_id and not current_user.admin?
-      redirect_to :back, notice: "Nemate pravo"
+      redirect_to :back, notice: "Nemate pravo pre editovanie !!!"
     end
-  end
+end
+
   # GET /schools
   # GET /schools.json
   def index
