@@ -3,10 +3,10 @@ class CompetitionsController < ApplicationController
 
   before_action :require_current_user, only: [:maintenance, :new, :create, :edit, :udpate, :destroy]
 
-  before_action only: [:new, :create, :edit, :udpate, :destroy] do |controller|
+  before_action only: [:edit, :udpate, :destroy] do |controller|
     competition_id = controller.params[:id]
     if not current_user.maintaining_competition_ids.include? competition_id and not current_user.admin?
-      redirect_to :back, notice: "Nemate pravo pre editovanie !!!"
+      redirect_to :back, notice: "Nemate pravo !!!"
     end
   end
 
@@ -69,7 +69,7 @@ class CompetitionsController < ApplicationController
     respond_to do |format|
       if @competition.save
         @competition.maintainers << current_user
-        format.html { redirect_to @competition, notice: 'Competition was successfully created.' }
+        format.html { redirect_to @competition, notice: 'Uspesne vytvorenie sutaze.' }
         format.json { render action: 'show', status: :created, location: @competition }
       else
         format.html { render action: 'new' }
@@ -83,7 +83,7 @@ class CompetitionsController < ApplicationController
   def update
     respond_to do |format|
       if @competition.update(competition_params)
-        format.html { redirect_to @competition, notice: 'Competition was successfully updated.' }
+        format.html { redirect_to @competition, notice: 'Sutaz sa podarilo uspesne aktualizovat.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
